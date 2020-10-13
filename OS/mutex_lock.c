@@ -5,7 +5,8 @@
 
 int ncount;    // 쓰레드간 공유되는 자원 
 pthread_mutex_t  mutex = PTHREAD_MUTEX_INITIALIZER; // 쓰레드 초기화 
- 
+ // pthread_mutex_t 구조체!
+ // pthread_mutex_lock() :  critical section 시작! 
 void* do_loop(void *data) 
 { 
     int i; 
@@ -53,3 +54,14 @@ int main()
     printf("programing is end"); 
     return 0; 
 } 
+
+
+/*
+  pthread_mutex_lock() 과 pthread_mutex_unlock() 사이의 
+  critical section 은 한번에 하나의 쓰레드만 수행할수 있고, 
+  먼저 이 critical section => mutex_lock 에 진입한 쓰레드가 종료할때까지 다른 쓰레드는 대기상태에 있다가,
+   앞선 쓰레드가 critical section 을 끝내고=> mutex_unlock 빠져나오면 진입하게 된다.  
+
+
+*/
+
