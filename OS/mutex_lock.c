@@ -46,8 +46,8 @@ int main()
     sleep(1); 
     thr_id = pthread_create(&p_thread[1], NULL, do_loop2, (void *)&a); 
  
-    pthread_join(p_thread[0], (void *) &status); 
-    pthread_join(p_thread[1], (void *) &status); 
+    pthread_join(p_thread[0], (void *) &status);   // 해당 쓰레드가 종료되기를 기다리는 것! 
+    pthread_join(p_thread[1], (void *) &status);   //종료되기를 기다린다.  
  
     status = pthread_mutex_destroy(&mutex); 
     printf("code  =  %d", status); 
